@@ -682,11 +682,25 @@ async def contacts(message: types.Message):
         "📸 Instagram: @pizza_shop",
         parse_mode="Markdown"
     )
+    
 
 async def main():
     init_db()
     print("✅ База даних підключена!")
     print("✅ Бот запущен!")
+    
+    from aiohttp import web
+    app = web.Application()
+    async def health(request):
+        return web.Response(text="OK")
+    app.router.add_get("/", health)
+    
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.getenv("PORT", 10000))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
