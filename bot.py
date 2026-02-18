@@ -8,8 +8,14 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 
-TOKEN = "8589619746:AAHDfukpa-T_3ILr4oJ2ukIEH01kXDjeGFw"
-ADMIN_ID = 2110956144
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = int(os.getenv("ADMIN_ID"))
+
 
 bot = Bot(token=TOKEN)
 storage = MemoryStorage()
