@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: pizza-bot
+    env: python
+    pythonVersion: "3.11"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
